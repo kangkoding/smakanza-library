@@ -15,7 +15,12 @@ class Peminjaman extends Model
     protected $table = 'riwayat_pinjam';
 
     protected $fillable = [
-      'users_id','buku_id','tanggal_pinjam','tanggal_wajib_kembali','tanggal_pengembalian'
+        'users_id',
+        'buku_id',
+        'tanggal_pinjam',
+        'tanggal_wajib_kembali',
+        'tanggal_pengembalian',
+        'total_denda'
     ];
 
     /**

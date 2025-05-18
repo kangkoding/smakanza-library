@@ -108,7 +108,7 @@
 
                 <div class="d-flex justify-content-end">
                     <a href="/buku" class="btn btn-danger">Kembali</a>
-                    <button type="submit" class="btn btn-primary mx-1 px-4">Submit</button>
+                    <button type="submit" class="btn btn-primary mx-1 px-4">Simpan</button>
                 </div>
             </form>
         </div>

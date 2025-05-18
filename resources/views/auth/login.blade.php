@@ -6,7 +6,7 @@
 @if (Route::has('login'))
     <div class="auth">
         @auth
-            <h1>Welcome Back, {{auth()->user()->name}}</h1>
+            <h1>Selamat Datang  , {{auth()->user()->name}}</h1>
             <a href="{{ url('/home') }}" class="btn btn-primary">Home</a>
         @else
         <div class="row justify-content-center">
@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="row mb-0">
-                        <span class="col-md-8 mb-3 text-md-end text-dark">Belum Punya Akun ? <a href="{{ route('register') }}" class="p-0">register</a></span>
+                        <span class="col-md-8 mb-3 text-md-end text-dark">Belum Punya Akun ? <a href="{{ route('register') }}" class="p-0">Register</a></span>
                         </div>
 
                         <div class="row mb-0">

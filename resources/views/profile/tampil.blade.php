@@ -29,22 +29,12 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="npm" class="text-lg text-primary font-weight-bold">Nomor Induk Mahasiswa</label>
-                    <h4>{{ $profile->npm }}</h4>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label for="prodi" class="text-lg text-primary font-weight-bold">Program Studi</label>
-                    <h4>{{ $profile->prodi }}</h4>
-                </div>
-
-                <div class="form-group mb-3">
                     <label for="prodi" class="text-lg text-primary font-weight-bold">Alamat</label>
                     <h4>{{ $profile->alamat }}</h4>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="prodi" class="text-lg text-primary font-weight-bold">Nomor Telephone</label>
+                    <label for="prodi" class="text-lg text-primary font-weight-bold">Nomor HP</label>
                     <h4>{{ $profile->noTelp }}</h4>
                 </div>
 

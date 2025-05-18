@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="prodi" class="text-lg text-primary font-weight-bold">Program Studi</label>
+                    <label for="prodi" class="text-lg text-primary font-weight-bold">Jurusan</label>
                     <h4>{{ $profile->prodi }}</h4>
                 </div>
 

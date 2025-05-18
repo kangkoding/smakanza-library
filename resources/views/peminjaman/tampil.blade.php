@@ -35,7 +35,7 @@
 @section('content')
     @if (Auth::user()->isAdmin == 1)
     <div class="container">
-        <a href="/peminjaman/create" class="btn btn-info mb-3 "><i class="fa-solid fa-plus"></i> tambah</a>
+        <a href="/peminjaman/create" class="btn btn-success mb-3 "><i class="fa-solid fa-plus"></i> Tambah</a>
         <a href="/cetaklaporan" class="btn btn-info mb-3 mx-2"><i class="fa-solid fa-print"></i> Cetak</a>
     </div>
     <div class="col-lg-auto">
@@ -51,6 +51,7 @@
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Tanggal Wajib Pengembalian</th>
                             <th scope="col">Tanggal Pengembalian</th>
+                            <th scope="col">Total Denda</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,6 +64,11 @@
                             <td>{{ $item->tanggal_pinjam }}</td>
                             <td>{{ $item->tanggal_wajib_kembali }}</td>
                             <td>{{ $item->tanggal_pengembalian }}</td>
+                            @if($item->total_denda > 0)
+                            <td><span class="btn btn-danger mb-2 mx-1">Rp {{ $item->total_denda }}</span></td>
+                            @else
+                            <td>Rp {{ $item->total_denda }}</td>
+                            @endif
                         </tr>
                         @empty
 
@@ -88,6 +94,7 @@
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Tanggal Wajib Pengembalian</th>
                             <th scope="col">Tanggal Pengembalian</th>
+                            <th scope="col">Total Denda</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,6 +107,7 @@
                             <td>{{ $item->tanggal_pinjam }}</td>
                             <td>{{ $item->tanggal_wajib_kembali }}</td>
                             <td>{{ $item->tanggal_pengembalian }}</td>
+                            <td>Rp {{ $item->total_denda }}</td>
                         </tr>
                         @empty
 

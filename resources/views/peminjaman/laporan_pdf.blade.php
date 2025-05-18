@@ -25,6 +25,7 @@
 				<th>Tanggal Pinjam</th>
 				<th>Tanggal Wajib Pengembalian</th>
                 <th>Tanggal Pengembalian</th>
+                <th>Total Denda</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,6 +38,11 @@
                             <td>{{ $item->tanggal_pinjam }}</td>
                             <td>{{ $item->tanggal_wajib_kembali }}</td>
                             <td>{{ $item->tanggal_pengembalian }}</td>
+							@if($item->total_denda > 0)
+                            <td><span class="btn btn-danger mb-2 mx-1">Rp {{ $item->total_denda }}</span></td>
+                            @else
+                            <td>Rp {{ $item->total_denda }}</td>
+                            @endif
                         </tr>
                         @empty
 

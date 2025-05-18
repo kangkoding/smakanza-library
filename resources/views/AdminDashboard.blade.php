@@ -91,7 +91,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-sm text-light font-weight-bold text-uppercase mb-1" style="font-size:.8`rem;">Riwayat Peminjamam</div>
+                            <div class="text-sm text-light font-weight-bold text-uppercase mb-1" style="font-size:.8`rem;">Riwayat Peminjaman</div>
                             <div class="h5 mb-0 mr-3 font-weight-bold text-light">{{ $jumlah_riwayat }}</div>
                             <div class="button mt-2"><a href="#" class="text-light">Lihat</a></div>
                         </div>
@@ -119,6 +119,7 @@
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Tanggal Wajib Pengembalian</th>
                             <th scope="col">Tanggal Pengembalian</th>
+                            <th scope="col">Total Denda</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,6 +132,11 @@
                             <td>{{ $item->tanggal_pinjam }}</td>
                             <td>{{ $item->tanggal_wajib_kembali }}</td>
                             <td>{{ $item->tanggal_pengembalian }}</td>
+                            @if($item->total_denda > 0)
+                            <td><span class="btn btn-danger mb-2 mx-1">Rp {{ $item->total_denda }}</span></td>
+                            @else
+                            <td>Rp {{ $item->total_denda }}</td>
+                            @endif
                         </tr>
                         @empty
 

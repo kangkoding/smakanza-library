@@ -45,7 +45,7 @@
 
 
                 <div class="fom-group">
-                    <label for="buku" class="text-primary font-weight-bold">Buku yang akan dipinjam</label>
+                    <label for="buku" class="text-primary font-weight-bold">Buku yang dipinjam</label>
                     <select name="buku_id" id="" class="form-control">
                         <option value=""></option>
                         @forelse ($buku as $item)
@@ -62,7 +62,7 @@
 
                 <div class="d-flex justify-content-end mt-5">
                     <a href="/peminjaman" class="btn btn-danger">Kembali</a>
-                    <button type="submit" class="btn btn-primary mx-1 px-4">Submit</button>
+                    <button type="submit" class="btn btn-primary mx-1 px-4">Simpan</button>
                 </div>
 
 

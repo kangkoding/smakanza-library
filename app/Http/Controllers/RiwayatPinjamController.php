@@ -24,10 +24,10 @@ class RiwayatPinjamController extends Controller
     public function index()
     {
         $iduser = Auth::id();
-        $profile = Profile::where('users_id',$iduser)->first();
-        $peminjam = Peminjaman::with(['user','buku'])->orderBy('updated_at','desc')->get();
-        $pinjamanUser = Peminjaman::where('users_id',$iduser)->get();
-        return view('peminjaman.tampil',['profile'=>$profile,'peminjam'=>$peminjam,'pinjamanUser'=>$pinjamanUser]);
+        $profile = Profile::where('users_id', $iduser)->first();
+        $peminjam = Peminjaman::with(['user', 'buku'])->orderBy('updated_at', 'desc')->get();
+        $pinjamanUser = Peminjaman::where('users_id', $iduser)->get();
+        return view('peminjaman.tampil', ['profile' => $profile, 'peminjam' => $peminjam, 'pinjamanUser' => $pinjamanUser]);
     }
 
     /**
@@ -38,20 +38,19 @@ class RiwayatPinjamController extends Controller
     public function create()
     {
         $iduser = Auth::id();
-        $profile = Profile::where('users_id',$iduser)->first();
-        $buku = Buku::where('status','In Stock')->get();
+        $profile = Profile::where('users_id', $iduser)->first();
+        $buku = Buku::where('status', 'Tersedia')->get();
         $user = User::all();
 
-        if(Auth::user()->isAdmin == 1){
-            $peminjam = Profile::where('users_id','>','1')->get();
-        }
-        else {
+        if (Auth::user()->isAdmin == 1) {
+            $peminjam = Profile::where('users_id', '>', '1')->get();
+        } else {
             $peminjam = $profile;
         }
 
 
 
-        return view('peminjaman.tambah',['profile'=>$profile,'users'=>$user,'buku'=>$buku, 'peminjam'=>$peminjam]);
+        return view('peminjaman.tambah', ['profile' => $profile, 'users' => $user, 'buku' => $buku, 'peminjam' => $peminjam]);
     }
     /**
      * Store a newly created resource in storage.
@@ -62,41 +61,40 @@ class RiwayatPinjamController extends Controller
     public function store(Request $request)
     {
         $request->validate(
-        [
-            'users_id'=>'required',
-            'buku_id'=>'required'
-        ],
-        [
-            'users_id.required'=> 'Harap Masukan Nama Peminjam',
-            'buku_id.required'=> 'Masukan Buku yang akan dipinjam'
-        ]
-    );
+            [
+                'users_id' => 'required',
+                'buku_id' => 'required'
+            ],
+            [
+                'users_id.required' => 'Harap Masukan Nama Peminjam',
+                'buku_id.required' => 'Masukan Buku yang akan dipinjam'
+            ]
+        );
         $request['tanggal_pinjam'] = Carbon::now()->toDateString();
         $request['tanggal_wajib_kembali'] = Carbon::now()->addDay(7)->toDateString();
+        $request['total_denda'] = 0;
 
         $buku = Buku::findOrFail($request->buku_id)->only('status');
 
-        $count = Peminjaman::where('users_id',$request->users_id)->where('tanggal_pengembalian',null)->count();
+        $count = Peminjaman::where('users_id', $request->users_id)->where('tanggal_pengembalian', null)->count();
 
-        if($count >= 3) {
+        if ($count >= 2) {
             Alert::warning('Gagal', 'User telah mencapai limit untuk meminjam buku');
             return redirect('/peminjaman/create');
-        }
-        else {
+        } else {
             try {
                 DB::beginTransaction();
                 // Proses insert tabel riwayat_pinjam
                 Peminjaman::create($request->all());
                 // Proses update tabel buku
                 $buku = Buku::findOrFail($request->buku_id);
-                $buku->status = 'dipinjam';
+                $buku->status = 'DIPINJAM';
                 $buku->save();
                 DB::commit();
 
 
                 Alert::success('Berhasil', 'Berhasil Meminjam Buku');
                 return redirect('/peminjaman');
-
             } catch (\Throwable $th) {
                 DB::rollback();
             }
