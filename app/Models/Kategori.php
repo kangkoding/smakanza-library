@@ -15,7 +15,6 @@ class Kategori extends Model
         'deskripsi'
     ];
 
-
      /**
      *
      *
