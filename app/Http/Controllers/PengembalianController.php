@@ -43,7 +43,7 @@ class PengembalianController extends Controller
 
                 if ($hari_ini->greaterThan($deadline)) {
                     $selisih = $hari_ini->diffInDays($deadline);
-                    $dataPinjaman->total_denda = $selisih * 5000;
+                    $dataPinjaman->total_denda = $selisih * 2000;
                 } else {
                     $dataPinjaman->total_denda = 0;
                 }

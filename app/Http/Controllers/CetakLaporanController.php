@@ -17,10 +17,10 @@ class CetakLaporanController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $riwayat_peminjaman = Peminjaman::with('user','buku')->get();
+        $riwayat_peminjaman = Peminjaman::with('user', 'buku')->get();
 
-        $pdf =PDF::loadView('peminjaman.laporan_pdf',['riwayat_peminjaman'=>$riwayat_peminjaman]);
+        $pdf = PDF::loadView('peminjaman.laporan_pdf', ['riwayat_peminjaman' => $riwayat_peminjaman]);
 
-        return $pdf->download('laporan_peminjaman.pdf');
+        return $pdf->download('laporan.pdf');
     }
 }
